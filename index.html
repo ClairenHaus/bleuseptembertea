@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bleu September Tea — 'Cause Baby, It's Tea Time</title>
+  <meta name="description" content="Premium loose leaf herbal teas, handcrafted in Coolidge, Arizona. Wellness blends, signature flavors, and to-go favorites. Sip slowly. Be present.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Snipcart CSS -->
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+
+  <style>
+    :root {
+      --deep: #0A0F1C;
+      --navy: #131B2E;
+      --navy-mid: #1C2B4A;
+      --bleu: #2E4270;
+      --cream: #F5F0E8;
+      --cream-soft: #EDE7DA;
+      --gold: #C4A265;
+      --gold-light: #D4B678;
+      --gold-dim: rgba(196,162,101,0.3);
+      --hibiscus: #C94060;
+      --hibiscus-deep: #8B1A3A;
+      --sage: #7A8C6E;
+      --berry: #6B2D5B;
+      --charcoal: #1A1A1A;
+      --text-soft: rgba(245,240,232,0.55);
+      --text-mid: rgba(245,240,232,0.75);
+      --border-subtle: rgba(196,162,101,0.15);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Jost', sans-serif;
+      --display: 'Playfair Display', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--deep);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ═══════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 48px;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    nav.scrolled {
+      background: rgba(10,15,28,0.95);
+      backdrop-filter: blur(16px);
+      padding: 16px 48px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-mid); transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cart {
+      position: relative; cursor: pointer;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); display: flex; align-items: center; gap: 8px;
+    }
+    .nav-cart-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--hibiscus); display: none;
+    }
+
+    /* Mobile menu */
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span {
+      width: 24px; height: 1.5px; background: var(--gold);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ═══════════════════════════════════
+       HERO
+    ═══════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      position: relative; overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 40%, rgba(139,26,58,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(107,45,91,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 50% at 85% 60%, rgba(46,66,112,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(10,15,28,0.4) 0%, transparent 100%);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute; border-radius: 50%;
+      animation: floatUp linear infinite;
+      opacity: 0;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+    }
+
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+    }
+    .hero-logo-text {
+      font-family: var(--display);
+      font-size: clamp(56px, 9vw, 120px);
+      font-weight: 400; line-height: 0.95;
+      color: var(--cream);
+      opacity: 0; animation: fadeUp 1.2s ease 0.4s forwards;
+    }
+    .hero-logo-text .accent {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold), var(--hibiscus));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 300; font-style: italic;
+      color: var(--text-mid); margin-top: 24px;
+      opacity: 0; animation: fadeUp 1.2s ease 0.7s forwards;
+    }
+    .hero-tagline em {
+      color: var(--gold-light); font-style: italic;
+    }
+    .hero-cta-row {
+      display: flex; gap: 20px; margin-top: 56px;
+      opacity: 0; animation: fadeUp 1.2s ease 1s forwards;
+    }
+    .btn {
+      padding: 16px 40px;
+      font-family: var(--sans); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer; border: none;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--deep);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      border: 1px solid rgba(245,240,232,0.25);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    .hero-scroll-cue {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeUp 1s ease 1.5s forwards;
+    }
+    .hero-scroll-cue span {
+      font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--text-soft);
+    }
+    .scroll-bar {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: pulse 2.5s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════
+       MARQUEE
+    ═══════════════════════════════════ */
+    .marquee {
+      background: linear-gradient(90deg, var(--hibiscus-deep), var(--hibiscus), var(--hibiscus-deep));
+      padding: 13px 0; overflow: hidden; white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: scroll 35s linear infinite;
+    }
+    .marquee-track span {
+      font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--cream); font-weight: 500; padding: 0 24px;
+    }
+    .marquee-track .sep { font-size: 8px; padding: 0 12px; opacity: 0.5; }
+    @keyframes scroll {
+      from { transform: translateX(0); } to { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════
+       SECTION UTILITIES
+    ═══════════════════════════════════ */
+    .section { padding: 120px 48px; max-width: 1300px; margin: 0 auto; }
+    .section-full { padding: 120px 48px; }
+    .section-eyebrow {
+      font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 400; line-height: 1.1;
+    }
+    .section-title .accent {
+      font-family: var(--serif); font-style: italic;
+      color: var(--gold-light);
+    }
+    .gold-line {
+      width: 48px; height: 1px; background: var(--gold); margin: 24px 0;
+    }
+    .gold-line-center { margin: 24px auto; }
+
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ═══════════════════════════════════
+       INTRO / ABOUT
+    ═══════════════════════════════════ */
+    .intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .intro-text p {
+      font-size: 15px; line-height: 2; color: var(--text-mid);
+      margin-bottom: 20px;
+    }
+    .intro-text .highlight {
+      color: var(--cream); font-weight: 400;
+    }
+    .intro-visual {
+      position: relative;
+    }
+    .intro-frame {
+      aspect-ratio: 4/5; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      border: 1px solid var(--border-subtle);
+    }
+    .intro-frame-inner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background:
+        radial-gradient(ellipse at 30% 70%, rgba(201,64,96,0.2), transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(196,162,101,0.15), transparent 50%);
+    }
+    .intro-frame-emoji { font-size: 100px; opacity: 0.12; }
+    .intro-frame-quote {
+      position: absolute; bottom: 28px; left: 28px; right: 28px;
+      font-family: var(--serif); font-size: 22px; font-style: italic;
+      color: var(--cream); line-height: 1.5; opacity: 0.85;
+    }
+    .intro-accent-box {
+      position: absolute; top: -16px; right: -16px;
+      width: 80px; height: 80px;
+      border: 1px solid var(--gold-dim);
+    }
+    .intro-accent-fill {
+      position: absolute; bottom: -16px; left: -16px;
+      width: 48px; height: 48px;
+      background: var(--gold); opacity: 0.1;
+    }
+
+    /* ═══════════════════════════════════
+       PRODUCT LANES
+    ═══════════════════════════════════ */
+    .lanes {
+      background: var(--navy);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .lanes-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; max-width: 1300px; margin: 0 auto;
+    }
+    .lane-card {
+      position: relative; aspect-ratio: 3/4; overflow: hidden;
+      cursor: pointer;
+    }
+    .lane-card-bg {
+      position: absolute; inset: 0; transition: transform 0.6s ease;
+    }
+    .lane-card:hover .lane-card-bg { transform: scale(1.05); }
+    .lane-card-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .lane-card-overlay {
+      position: absolute; inset: 0;
+      transition: opacity 0.5s;
+    }
+    .lane-1 .lane-card-overlay {
+      background: linear-gradient(to top, rgba(10,15,28,0.95) 10%, rgba(10,15,28,0.4) 50%, rgba(122,140,110,0.15) 100%);
+    }
+    .lane-2 .lane-card-overlay {
+      background: linear-gradient(to top, rgba(10,15,28,0.95) 10%, rgba(10,15,28,0.4) 50%, rgba(201,64,96,0.1) 100%);
+    }
+    .lane-3 .lane-card-overlay {
+      background: linear-gradient(to top, rgba(10,15,28,0.95) 10%, rgba(10,15,28,0.4) 50%, rgba(107,45,91,0.15) 100%);
+    }
+    .lane-icon {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-size: 120px; opacity: 0.06;
+      transition: opacity 0.4s;
+    }
+    .lane-card:hover .lane-icon { opacity: 0.1; }
+    .lane-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 36px 28px; z-index: 2;
+    }
+    .lane-tag {
+      font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .lane-title {
+      font-family: var(--display); font-size: 28px;
+      font-weight: 400; line-height: 1.2; margin-bottom: 12px;
+    }
+    .lane-desc {
+      font-size: 12px; line-height: 1.7; color: var(--text-soft);
+      margin-bottom: 20px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
+    }
+    .lane-card:hover .lane-desc { opacity: 1; transform: translateY(0); }
+    .lane-link {
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); display: inline-flex; align-items: center; gap: 8px;
+    }
+    .lane-link::after { content: '→'; transition: transform 0.3s; }
+    .lane-card:hover .lane-link::after { transform: translateX(6px); }
+
+    /* ═══════════════════════════════════
+       SHOP
+    ═══════════════════════════════════ */
+    #shop { scroll-margin-top: 80px; }
+    .shop-header { text-align: center; margin-bottom: 48px; }
+    .shop-tabs {
+      display: flex; justify-content: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 56px;
+    }
+    .shop-tab {
+      padding: 10px 24px;
+      font-family: var(--sans); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-soft); background: transparent;
+      border: 1px solid rgba(245,240,232,0.1);
+      cursor: pointer; transition: all 0.3s;
+    }
+    .shop-tab:hover { border-color: var(--gold-dim); color: var(--cream); }
+    .shop-tab.active {
+      background: var(--gold); color: var(--deep);
+      border-color: var(--gold);
+    }
+
+    .products-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; max-width: 1300px; margin: 0 auto;
+    }
+    .product-card {
+      background: var(--navy);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      transition: border-color 0.4s, transform 0.3s;
+    }
+    .product-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-4px);
+    }
+    .product-card[data-hidden="true"] { display: none; }
+    .product-img {
+      aspect-ratio: 1; overflow: hidden;
+      background: var(--navy-mid);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+    .product-img-placeholder {
+      font-size: 48px; opacity: 0.15;
+    }
+    .product-info {
+      padding: 20px;
+    }
+    .product-category {
+      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 8px;
+    }
+    .product-name {
+      font-family: var(--serif);
+      font-size: 18px; font-weight: 400;
+      color: var(--cream); line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .product-subtitle {
+      font-size: 11px; color: var(--text-soft);
+      margin-bottom: 12px; line-height: 1.5;
+    }
+    .product-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 12px; border-top: 1px solid var(--border-subtle);
+    }
+    .product-price {
+      font-family: var(--serif);
+      font-size: 20px; color: var(--gold-light);
+    }
+    .btn-cart {
+      padding: 8px 20px;
+      font-family: var(--sans); font-size: 9px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      background: transparent; color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      cursor: pointer; transition: all 0.3s;
+    }
+    .btn-cart:hover {
+      background: var(--gold); color: var(--deep);
+      border-color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════
+       RITUAL SECTION
+    ═══════════════════════════════════ */
+    .ritual-section {
+      background: var(--navy);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .ritual-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      max-width: 1300px; margin: 0 auto;
+    }
+    .ritual-step {
+      display: flex; gap: 28px; padding: 32px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .ritual-step:first-child { border-top: 1px solid var(--border-subtle); }
+    .step-num {
+      font-family: var(--serif); font-size: 42px; font-weight: 300;
+      color: var(--gold-dim); line-height: 1; width: 40px; flex-shrink: 0;
+    }
+    .step-title {
+      font-family: var(--serif); font-size: 20px; font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .step-desc { font-size: 13px; line-height: 1.7; color: var(--text-soft); }
+    .ritual-quote {
+      text-align: center;
+    }
+    .ritual-quote blockquote {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.35; position: relative;
+    }
+    .ritual-quote blockquote::before {
+      content: '\201C';
+      font-size: 100px; color: var(--gold); opacity: 0.15;
+      position: absolute; top: -20px; left: -16px;
+      font-family: var(--serif); line-height: 1;
+    }
+    .ritual-quote cite {
+      display: block; margin-top: 28px;
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); font-style: normal;
+    }
+
+    /* ═══════════════════════════════════
+       PRIVATE EVENTS
+    ═══════════════════════════════════ */
+    #events { scroll-margin-top: 80px; }
+    .events-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+    }
+    .events-info h3 {
+      font-family: var(--serif); font-size: 24px; font-weight: 400;
+      margin-bottom: 16px; color: var(--gold-light);
+    }
+    .events-info p {
+      font-size: 14px; line-height: 1.9; color: var(--text-mid);
+      margin-bottom: 24px;
+    }
+    .events-list {
+      list-style: none; margin-bottom: 32px;
+    }
+    .events-list li {
+      font-size: 13px; color: var(--text-mid);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .events-list li::before {
+      content: '✦'; color: var(--gold); font-size: 10px;
+    }
+    .event-form {
+      background: var(--navy);
+      border: 1px solid var(--border-subtle);
+      padding: 40px;
+    }
+    .form-title {
+      font-family: var(--serif); font-size: 22px;
+      margin-bottom: 28px; text-align: center;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 14px 16px;
+      background: rgba(245,240,232,0.05);
+      border: 1px solid rgba(245,240,232,0.12);
+      color: var(--cream);
+      font-family: var(--sans); font-size: 13px;
+      outline: none; transition: border-color 0.3s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--navy); color: var(--cream); }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 16px;
+      background: var(--gold); color: var(--deep);
+      font-family: var(--sans); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      border: none; cursor: pointer; transition: background 0.3s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+
+    /* ═══════════════════════════════════
+       EMAIL CAPTURE
+    ═══════════════════════════════════ */
+    .email-capture {
+      background: linear-gradient(135deg, var(--hibiscus-deep), var(--navy-mid));
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .email-capture::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(196,162,101,0.08), transparent);
+    }
+    .email-capture .section-title { margin-bottom: 12px; }
+    .email-capture p {
+      font-size: 14px; color: var(--text-mid);
+      max-width: 440px; margin: 0 auto 40px; line-height: 1.8;
+      position: relative; z-index: 1;
+    }
+    .email-row {
+      display: flex; gap: 0; max-width: 460px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .email-row input {
+      flex: 1; padding: 16px 20px;
+      background: rgba(245,240,232,0.08);
+      border: 1px solid rgba(245,240,232,0.15);
+      border-right: none; color: var(--cream);
+      font-family: var(--sans); font-size: 13px; outline: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .email-row input::placeholder { color: var(--text-soft); }
+    .email-row input:focus { border-color: var(--gold); background: rgba(245,240,232,0.12); }
+    .email-row button {
+      padding: 16px 28px;
+      background: var(--gold); border: none; color: var(--deep);
+      font-family: var(--sans); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.3s; white-space: nowrap;
+    }
+    .email-row button:hover { background: var(--gold-light); }
+    .email-fine {
+      font-size: 10px; color: var(--text-soft);
+      margin-top: 12px; letter-spacing: 0.1em;
+      position: relative; z-index: 1;
+    }
+
+    /* ═══════════════════════════════════
+       SOCIAL / FIND US
+    ═══════════════════════════════════ */
+    .social-section { text-align: center; }
+    .social-handles {
+      display: flex; justify-content: center; gap: 48px;
+      margin-top: 40px;
+    }
+    .social-link {
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-mid); display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+    }
+    .social-link:hover { color: var(--gold); }
+    .social-link span { font-size: 18px; }
+
+    /* ═══════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════ */
+    footer {
+      background: var(--charcoal);
+      padding: 72px 48px 36px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; max-width: 1300px; margin: 0 auto 56px;
+    }
+    .footer-brand-name {
+      font-family: var(--serif); font-size: 22px;
+      color: var(--gold); letter-spacing: 0.15em; margin-bottom: 16px;
+    }
+    .footer-brand p {
+      font-size: 13px; line-height: 1.8; color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+    .footer-location {
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.6;
+    }
+    .footer-col h5 {
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      font-size: 13px; color: var(--text-soft); transition: color 0.3s;
+    }
+    .footer-col ul li a:hover { color: var(--cream); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto;
+      padding-top: 28px;
+      border-top: 1px solid rgba(245,240,232,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-bottom p {
+      font-size: 11px; color: rgba(245,240,232,0.2); letter-spacing: 0.08em;
+    }
+    .footer-disclaimer {
+      max-width: 1300px; margin: 24px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(245,240,232,0.04);
+    }
+    .footer-disclaimer p {
+      font-size: 10px; line-height: 1.7;
+      color: rgba(245,240,232,0.2); text-align: center;
+    }
+
+    /* ═══════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(10,15,28,0.98); backdrop-filter: blur(16px);
+        padding: 24px 48px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .section, .section-full { padding: 80px 24px; }
+      .intro { grid-template-columns: 1fr; gap: 48px; }
+      .intro-visual { order: -1; }
+      .lanes-grid { grid-template-columns: 1fr; }
+      .lane-card { aspect-ratio: 3/2; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .ritual-inner { grid-template-columns: 1fr; gap: 48px; }
+      .ritual-quote { order: -1; }
+      .events-split { grid-template-columns: 1fr; gap: 48px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .email-row { flex-direction: column; }
+      .email-row input { border-right: 1px solid rgba(245,240,232,0.15); border-bottom: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .hero-cta-row { flex-direction: column; align-items: center; }
+      .shop-tabs { gap: 4px; }
+      .shop-tab { padding: 8px 16px; font-size: 9px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="navbar">
+    <a href="#" class="nav-brand">Bleu September Tea</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#events">Private Events</a></li>
+      <li><a href="#collaborate">Collaborate</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <a class="snipcart-checkout nav-cart">
+          Bag <span class="snipcart-items-count"></span>
+          <span class="nav-cart-dot"></span>
+        </a>
+      </li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+
+    <!-- Particles -->
+    <div class="particle" style="left:10%;bottom:0;width:4px;height:4px;background:var(--hibiscus);animation-duration:14s;animation-delay:0s;"></div>
+    <div class="particle" style="left:25%;bottom:0;width:3px;height:3px;background:var(--gold);animation-duration:18s;animation-delay:3s;"></div>
+    <div class="particle" style="left:55%;bottom:0;width:5px;height:5px;background:var(--hibiscus);animation-duration:16s;animation-delay:6s;"></div>
+    <div class="particle" style="left:75%;bottom:0;width:3px;height:3px;background:var(--gold);animation-duration:20s;animation-delay:1s;"></div>
+    <div class="particle" style="left:90%;bottom:0;width:4px;height:4px;background:var(--berry);animation-duration:17s;animation-delay:9s;"></div>
+
+    <p class="hero-eyebrow">Coolidge, Arizona · Handcrafted Herbal Teas</p>
+    <h1 class="hero-logo-text">
+      BLEU<br>
+      <span class="accent">September</span><br>
+      TEA
+    </h1>
+    <p class="hero-tagline">Sip different. Stay <em>Bleu.</em></p>
+    <div class="hero-cta-row">
+      <a href="#shop" class="btn btn-gold">Shop Now</a>
+      <a href="#events" class="btn btn-outline">Private Events</a>
+    </div>
+    <div class="hero-scroll-cue">
+      <div class="scroll-bar"></div>
+      <span>Explore</span>
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Sip Slowly</span><span class="sep">✦</span>
+      <span>Be Present</span><span class="sep">✦</span>
+      <span>Handcrafted</span><span class="sep">✦</span>
+      <span>Small Batch</span><span class="sep">✦</span>
+      <span>'Cause Baby, It's Tea Time</span><span class="sep">✦</span>
+      <span>Wellness Blends</span><span class="sep">✦</span>
+      <span>Signature Flavors</span><span class="sep">✦</span>
+      <span>To-Go Favorites</span><span class="sep">✦</span>
+      <span>Sip Slowly</span><span class="sep">✦</span>
+      <span>Be Present</span><span class="sep">✦</span>
+      <span>Handcrafted</span><span class="sep">✦</span>
+      <span>Small Batch</span><span class="sep">✦</span>
+      <span>'Cause Baby, It's Tea Time</span><span class="sep">✦</span>
+      <span>Wellness Blends</span><span class="sep">✦</span>
+      <span>Signature Flavors</span><span class="sep">✦</span>
+      <span>To-Go Favorites</span><span class="sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══ INTRO ═══ -->
+  <section class="section" id="about">
+    <div class="intro">
+      <div class="intro-text reveal">
+        <p class="section-eyebrow">The Story</p>
+        <h2 class="section-title">Tea as <span class="accent">ritual,</span><br>not routine.</h2>
+        <div class="gold-line"></div>
+        <p>Bleu September is an invitation to slow down. <span class="highlight">Rooted in ritual and crafted with intention</span>, each blend is designed to complement life's quieter moments — the early morning hush, the gentle pause between tasks, the calm that settles as evening arrives.</p>
+        <p>Every tea is <span class="highlight">handmade from scratch</span> — blended, labeled, and packaged by hand in Coolidge, Arizona. No shortcuts. No filler. Just tea made with love and an obsessive attention to what goes into your cup.</p>
+        <p style="font-family:var(--serif);font-style:italic;color:var(--gold-light);font-size:17px;">'Cause baby, it's Tea Time.</p>
+      </div>
+      <div class="intro-visual reveal reveal-d2">
+        <div class="intro-accent-box"></div>
+        <div class="intro-accent-fill"></div>
+        <div class="intro-frame">
+          <img src="the-story.png" alt="Woman savoring a cup of Bleu September Tea" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px;background:linear-gradient(to top,rgba(10,15,28,0.85),transparent);">
+            <p class="intro-frame-quote">"The beauty of savoring what often goes unnoticed."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRODUCT LANES ═══ -->
+  <section class="lanes section-full">
+    <div style="text-align:center;margin-bottom:56px;padding:0 24px;">
+      <p class="section-eyebrow reveal">Three Lanes, One Brand</p>
+      <h2 class="section-title reveal reveal-d1">Our <span class="accent">Collections</span></h2>
+    </div>
+    <div class="lanes-grid">
+      <a href="#shop" class="lane-card lane-1 reveal" onclick="filterShop('wellness')">
+        <div class="lane-card-bg"><img src="lane-wellness.png" alt="Wellness Collection" loading="lazy"></div>
+        <div class="lane-card-overlay"></div>
+        <div class="lane-content">
+          <p class="lane-tag">Wellness · Apothecary</p>
+          <h3 class="lane-title">Wellness<br>Collection</h3>
+          <p class="lane-desc">Intentional herbal formulations rooted in plant wisdom. Crafted to support body, mind, and spirit.</p>
+          <span class="lane-link">Shop Wellness</span>
+        </div>
+      </a>
+      <a href="#shop" class="lane-card lane-2 reveal reveal-d1" onclick="filterShop('signature')">
+        <div class="lane-card-bg"><img src="lane-signature.png" alt="Signature Blends" loading="lazy"></div>
+        <div class="lane-card-overlay"></div>
+        <div class="lane-content">
+          <p class="lane-tag">Signature · Taste Good</p>
+          <h3 class="lane-title">Signature<br>Blends</h3>
+          <p class="lane-desc">Artfully composed blends for warm, unhurried moments. Bold flavor, effortless sipping.</p>
+          <span class="lane-link">Shop Signature</span>
+        </div>
+      </a>
+      <a href="#shop" class="lane-card lane-3 reveal reveal-d2" onclick="filterShop('herbs')">
+        <div class="lane-card-bg"><img src="lane-herbs.png" alt="Loose Leaf Herbs" loading="lazy"></div>
+        <div class="lane-card-overlay"></div>
+        <div class="lane-content">
+          <p class="lane-tag">Apothecary · Singles</p>
+          <h3 class="lane-title">Loose Leaf<br>Herbs</h3>
+          <p class="lane-desc">Pure, single-origin apothecary herbs. Build your own ritual, your way.</p>
+          <span class="lane-link">Shop Herbs</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ SHOP ═══ -->
+  <section class="section" id="shop">
+    <div class="shop-header reveal">
+      <p class="section-eyebrow">Handcrafted in Arizona</p>
+      <h2 class="section-title">The <span class="accent">Shop</span></h2>
+      <div class="gold-line gold-line-center"></div>
+    </div>
+
+    <div class="shop-tabs reveal">
+      <button class="shop-tab active" onclick="filterShop('all')">All</button>
+      <button class="shop-tab" onclick="filterShop('signature')">Signature</button>
+      <button class="shop-tab" onclick="filterShop('wellness')">Wellness</button>
+      <button class="shop-tab" onclick="filterShop('herbs')">Herbs</button>
+      <button class="shop-tab" onclick="filterShop('togo')">To-Go</button>
+      <button class="shop-tab" onclick="filterShop('seamoss')">Sea Moss</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+
+      <!-- ══ SIGNATURE BLENDS ══ -->
+      <div class="product-card" data-cat="signature">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/01c31a75-58ef-4e98-b5cd-7abc8c1fee16/Hibiscus+ginger+lemonade+tea+blend.png" alt="Hibiscus Ginger Lemonade" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Signature Blend</p>
+          <h3 class="product-name">Hibiscus Ginger Lemonade</h3>
+          <p class="product-subtitle">Supports antioxidant activity</p>
+          <div class="product-footer">
+            <span class="product-price">$13</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="hibiscus-ginger-lemonade"
+              data-item-name="Hibiscus Ginger Lemonade"
+              data-item-price="13.00"
+              data-item-url="/"
+              data-item-description="Signature blend"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="signature">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/8dbeafef-52d7-490c-8aa9-511cdd98a29e/Midnight+Whiskey+tea+blend+close-up.png" alt="Midnight Whiskey" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Signature Blend</p>
+          <h3 class="product-name">Midnight Whiskey</h3>
+          <p class="product-subtitle">Bold & Sexy</p>
+          <div class="product-footer">
+            <span class="product-price">$13</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="midnight-whiskey"
+              data-item-name="Midnight Whiskey (Bold & Sexy)"
+              data-item-price="13.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="signature">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/6626c677-35bd-4ecb-8b42-03871436d744/ChatGPT+Image+Dec+28%2C+2025+at+08_47_25+AM.png" alt="Zen" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Signature Blend</p>
+          <h3 class="product-name">Zen</h3>
+          <p class="product-subtitle">Relaxation & Sleep</p>
+          <div class="product-footer">
+            <span class="product-price">$13</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="zen"
+              data-item-name="Zen (Relaxation & Sleep)"
+              data-item-price="13.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="signature">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/5455f8c0-2463-4dee-a497-963c08d3979d/8C8413C9-934F-4630-80BE-ABEC0BCCDB47.png" alt="Strawberry Truffle" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Signature Blend</p>
+          <h3 class="product-name">Strawberry Truffle</h3>
+          <p class="product-subtitle">Dessert-inspired indulgence</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="strawberry-truffle"
+              data-item-name="Strawberry Truffle"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="signature">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/7fafeccc-780c-4895-92c3-83367befe049/65456B71-ED2D-4F3F-94A3-69A78F17B28D.png" alt="Cherries On Top" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Signature Blend</p>
+          <h3 class="product-name">Cherries On Top</h3>
+          <p class="product-subtitle">Sweet & bold finish</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="cherries-on-top"
+              data-item-name="Cherries On Top"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ WELLNESS / APOTHECARY ══ -->
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/c73e9d03-2e0c-4622-8e25-74662d573b92/ChatGPT+Image+Dec+28%2C+2025+at+08_42_26+AM.png" alt="Mental Pause" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Mental Pause</h3>
+          <p class="product-subtitle">Hormone Support</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="mental-pause"
+              data-item-name="Mental Pause (Hormone Support)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/0bcb17e3-df6c-44f1-9e92-b286dacdff48/IMG_3075.PNG" alt="Blood Pressure" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Blood Pressure</h3>
+          <p class="product-subtitle">Cardiovascular Balance</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="blood-pressure"
+              data-item-name="Blood Pressure (Cardiovascular Balance)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/d0af2397-ca43-4028-85e1-92c2c54f0f15/Herbal+tea+blend+with+Sea+Moss.png" alt="Stay Health Sea" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Stay Health Sea</h3>
+          <p class="product-subtitle">Sea Moss · Immune Health</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="stay-health-sea"
+              data-item-name="Stay Health Sea (Immune Health)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/241b0d52-4325-49f9-9cb8-9156eff6923c/Kidney+care+tea+on+marble+countertop.png" alt="Kidney Care" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Kidney Care</h3>
+          <p class="product-subtitle">Supports Kidney Health</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="kidney-care"
+              data-item-name="Kidney Care"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/f7d4caeb-1bab-4468-86e8-ab8070952171/Herbal+tea+blend+with+calming+essence.png" alt="Anxyuh-Tea" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Anxyuh-Tea</h3>
+          <p class="product-subtitle">May Ease Anxious Thoughts</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="anxyuh-tea"
+              data-item-name="Anxyuh-Tea (Anxiety Support)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/bd903547-b00f-4407-bc51-82049fbab507/Herbal+tea+for+soothing+moments+2.png" alt="Breathe" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Breathe</h3>
+          <p class="product-subtitle">Promotes Lung Health</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="breathe"
+              data-item-name="Breathe (Lung Health)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/f959a585-30d8-4316-b982-26b03d00053d/Diabetes+support+tea+blend+on+marble.png" alt="Diabetes Support" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Diabetes Support</h3>
+          <p class="product-subtitle">Supports Diabetes Health</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="diabetes-support"
+              data-item-name="Diabetes Support"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/bf99e8f5-f0dd-46a9-9a06-254802680276/ChatGPT+Image+Dec+28%2C+2025+at+08_41_55+AM.png" alt="Gut Health Detox" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Gut Health / Detox</h3>
+          <p class="product-subtitle">Cleansing & Digestive Support</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="gut-health-detox"
+              data-item-name="Gut Health / Detox"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/e9edcc1d-38c6-4fba-84b4-45686bbf4f1b/Cold+%26+flu+herbal+tea+blend.png" alt="Cold and Flu" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Cold & Flu</h3>
+          <p class="product-subtitle">Immune Health</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="cold-flu"
+              data-item-name="Cold & Flu (Immune Health)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ HERBS ══ -->
+      <div class="product-card" data-cat="herbs">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/4a05b4ee-ca0b-4454-a223-93f282fe310b/ChatGPT+Image+Feb+2%2C+2026%2C+05_23_07+PM.png" alt="Lemon Balm" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Loose Leaf Herb</p>
+          <h3 class="product-name">Lemon Balm</h3>
+          <p class="product-subtitle">Calming & uplifting citrus</p>
+          <div class="product-footer">
+            <span class="product-price">$12</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="lemon-balm"
+              data-item-name="Lemon Balm"
+              data-item-price="12.00"
+              data-item-url="/"
+              data-item-weight="227">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="herbs">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/ecee81f2-5e66-4cb4-8809-20108a3de6bd/ChatGPT+Image+Feb+2%2C+2026%2C+05_22_49+PM.png" alt="Tulsi" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Loose Leaf Herb</p>
+          <h3 class="product-name">Tulsi (Holy Basil)</h3>
+          <p class="product-subtitle">Stress support & balance</p>
+          <div class="product-footer">
+            <span class="product-price">$12</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="tulsi"
+              data-item-name="Tulsi (Holy Basil)"
+              data-item-price="12.00"
+              data-item-url="/"
+              data-item-weight="227">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="herbs">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/939cfa5d-c01a-41c8-a62b-cdd0f5f0b070/ChatGPT+Image+Feb+2%2C+2026%2C+05_22_57+PM.png" alt="Red Raspberry" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Loose Leaf Herb</p>
+          <h3 class="product-name">Red Raspberry</h3>
+          <p class="product-subtitle">Women's wellness support</p>
+          <div class="product-footer">
+            <span class="product-price">$12</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="red-raspberry"
+              data-item-name="Red Raspberry Leaf"
+              data-item-price="12.00"
+              data-item-url="/"
+              data-item-weight="227">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="herbs">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/9dea2596-767d-43ba-84ae-b11b889ef148/ChatGPT+Image+Feb+2%2C+2026%2C+05_23_17+PM.png" alt="Peppermint" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Loose Leaf Herb</p>
+          <h3 class="product-name">Peppermint</h3>
+          <p class="product-subtitle">Cooling & clarity</p>
+          <div class="product-footer">
+            <span class="product-price">$12</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="peppermint"
+              data-item-name="Peppermint"
+              data-item-price="12.00"
+              data-item-url="/"
+              data-item-weight="227">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="herbs">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/699f5977-c685-4867-a2a6-5c5f6ef5583e/ChatGPT+Image+Feb+2%2C+2026%2C+05_23_32+PM.png" alt="Hibiscus" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Loose Leaf Herb</p>
+          <h3 class="product-name">Hibiscus</h3>
+          <p class="product-subtitle">Rich antioxidant flower</p>
+          <div class="product-footer">
+            <span class="product-price">$12</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="hibiscus-herb"
+              data-item-name="Hibiscus"
+              data-item-price="12.00"
+              data-item-url="/"
+              data-item-weight="227">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="herbs">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/5f5991c4-594e-4451-9066-ee0e8597a3f8/ChatGPT+Image+Feb+2%2C+2026%2C+05_23_36+PM.png" alt="Chamomile" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Loose Leaf Herb</p>
+          <h3 class="product-name">Chamomile</h3>
+          <p class="product-subtitle">Relaxation & restful sleep</p>
+          <div class="product-footer">
+            <span class="product-price">$12</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="chamomile"
+              data-item-name="Chamomile"
+              data-item-price="12.00"
+              data-item-url="/"
+              data-item-weight="227">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/0cf51404-e5ef-491f-a0a5-293a5738e9dd/Herbal+tea+blend+on+marble+countertop.png" alt="Pain" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Pain</h3>
+          <p class="product-subtitle">Supports Natural Response to Pain</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="pain"
+              data-item-name="Pain (Natural Pain Response)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/e942eb12-8e82-4a1a-9800-289a9e9dd576/IMG_3076.PNG" alt="PMS/PCOS" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">PMS / PCOS</h3>
+          <p class="product-subtitle">Supports Women's Health</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="pms-pcos"
+              data-item-name="PMS/PCOS (Women's Health)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="wellness">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/d21e7e87-9d86-4a74-8a1c-a5aed79eb7c2/Bleu+September+Tea%27s+inflammation+blend.png" alt="Inflammation" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Wellness</p>
+          <h3 class="product-name">Inflammation</h3>
+          <p class="product-subtitle">Supports Reduced Inflammation</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="inflammation"
+              data-item-name="Inflammation (Anti-Inflammatory)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="signature">
+        <div class="product-img"><img src="https://images.squarespace-cdn.com/content/v1/67b77f2a9f020b714dd0fa61/03d5d9b8-6c20-4b98-8e1c-2ccd0e298b6e/1096CDE5-D391-4FB7-932F-631AB3C96FA7.png" alt="Citrus Reverie" loading="lazy"></div>
+        <div class="product-info">
+          <p class="product-category">Signature Blend</p>
+          <h3 class="product-name">Citrus Reverie</h3>
+          <p class="product-subtitle">Imperial Green Tea</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="citrus-reverie"
+              data-item-name="Citrus Reverie (Imperial Green Tea)"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TO-GO ══ -->
+      <div class="product-card" data-cat="togo">
+        <div class="product-img"><span class="product-img-placeholder">🥤</span></div>
+        <div class="product-info">
+          <p class="product-category">To-Go</p>
+          <h3 class="product-name">Create Your Own</h3>
+          <p class="product-subtitle">Custom blend, your flavor</p>
+          <div class="product-footer">
+            <span class="product-price">$5</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="togo-custom"
+              data-item-name="Create Your Own (To-Go)"
+              data-item-price="5.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="togo">
+        <div class="product-img"><span class="product-img-placeholder">🧋</span></div>
+        <div class="product-info">
+          <p class="product-category">To-Go</p>
+          <h3 class="product-name">Brown Sugar</h3>
+          <p class="product-subtitle">Sweet, rich, smooth</p>
+          <div class="product-footer">
+            <span class="product-price">$5</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="togo-brown-sugar"
+              data-item-name="Brown Sugar (To-Go)"
+              data-item-price="5.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="togo">
+        <div class="product-img"><span class="product-img-placeholder">🏝️</span></div>
+        <div class="product-info">
+          <p class="product-category">To-Go</p>
+          <h3 class="product-name">Tropical</h3>
+          <p class="product-subtitle">Bright island vibes</p>
+          <div class="product-footer">
+            <span class="product-price">$5</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="togo-tropical"
+              data-item-name="Tropical (To-Go)"
+              data-item-price="5.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="togo">
+        <div class="product-img"><span class="product-img-placeholder">🌸</span></div>
+        <div class="product-info">
+          <p class="product-category">To-Go</p>
+          <h3 class="product-name">Hibiscus Cream</h3>
+          <p class="product-subtitle">Creamy floral blend</p>
+          <div class="product-footer">
+            <span class="product-price">$5</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="togo-hibiscus-cream"
+              data-item-name="Hibiscus Cream (To-Go)"
+              data-item-price="5.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="togo">
+        <div class="product-img"><span class="product-img-placeholder">🍓</span></div>
+        <div class="product-info">
+          <p class="product-category">To-Go</p>
+          <h3 class="product-name">Strawberries & Cream</h3>
+          <p class="product-subtitle">Sweet berry indulgence</p>
+          <div class="product-footer">
+            <span class="product-price">$5</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="togo-strawberries-cream"
+              data-item-name="Strawberries & Cream (To-Go)"
+              data-item-price="5.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ SEA MOSS ══ -->
+      <div class="product-card" data-cat="seamoss">
+        <div class="product-img"><span class="product-img-placeholder">🍋</span></div>
+        <div class="product-info">
+          <p class="product-category">Sea Moss</p>
+          <h3 class="product-name">Lemon Sea Moss</h3>
+          <p class="product-subtitle">Citrus immunity boost</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="seamoss-lemon"
+              data-item-name="Lemon Sea Moss"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="seamoss">
+        <div class="product-img"><span class="product-img-placeholder">💚</span></div>
+        <div class="product-info">
+          <p class="product-category">Sea Moss</p>
+          <h3 class="product-name">Lemon Lime Sea Moss</h3>
+          <p class="product-subtitle">Double citrus power</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="seamoss-lemon-lime"
+              data-item-name="Lemon Lime Sea Moss"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="seamoss">
+        <div class="product-img"><span class="product-img-placeholder">🌺</span></div>
+        <div class="product-info">
+          <p class="product-category">Sea Moss</p>
+          <h3 class="product-name">Hibiscus Sea Moss</h3>
+          <p class="product-subtitle">Floral immunity blend</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="seamoss-hibiscus"
+              data-item-name="Hibiscus Sea Moss"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="seamoss">
+        <div class="product-img"><span class="product-img-placeholder">🌀</span></div>
+        <div class="product-info">
+          <p class="product-category">Sea Moss</p>
+          <h3 class="product-name">Spirulina Sea Moss</h3>
+          <p class="product-subtitle">Superfood immunity</p>
+          <div class="product-footer">
+            <span class="product-price">$15</span>
+            <button class="btn-cart snipcart-add-item"
+              data-item-id="seamoss-spirulina"
+              data-item-name="Spirulina Sea Moss"
+              data-item-price="15.00"
+              data-item-url="/"
+              data-item-weight="454">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ RITUAL ═══ -->
+  <section class="ritual-section section-full">
+    <div class="ritual-inner" style="padding:0 48px;">
+      <div class="reveal">
+        <p class="section-eyebrow" style="margin-bottom:28px;">The Ritual</p>
+        <div class="ritual-step">
+          <span class="step-num">01</span>
+          <div>
+            <h4 class="step-title">Choose Your Moment</h4>
+            <p class="step-desc">Morning stillness, afternoon pause, or evening wind-down — every time of day holds its own ritual.</p>
+          </div>
+        </div>
+        <div class="ritual-step">
+          <span class="step-num">02</span>
+          <div>
+            <h4 class="step-title">Select Your Blend</h4>
+            <p class="step-desc">Wellness, signature, or to-go — each crafted with intention, subtle aromatics, and purposeful botanicals.</p>
+          </div>
+        </div>
+        <div class="ritual-step">
+          <span class="step-num">03</span>
+          <div>
+            <h4 class="step-title">Steep & Surrender</h4>
+            <p class="step-desc">Let the water do its work. Breathe. This is your moment — no rushing, no skipping, just presence.</p>
+          </div>
+        </div>
+        <div class="ritual-step">
+          <span class="step-num">04</span>
+          <div>
+            <h4 class="step-title">Sip Slowly</h4>
+            <p class="step-desc">'Cause baby, it's Tea Time — and that deserves your full attention.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ritual-quote reveal reveal-d2">
+        <blockquote>
+          This is tea for those who value stillness, refinement, and the luxury of unhurried time.
+        </blockquote>
+        <cite>— Bleu September Tea</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRIVATE EVENTS ═══ -->
+  <section class="section" id="events">
+    <p class="section-eyebrow reveal">Book an Experience</p>
+    <h2 class="section-title reveal reveal-d1" style="margin-bottom:48px;">Private <span class="accent">Events</span></h2>
+    <div class="events-split">
+      <div class="events-info reveal">
+        <h3>Let Us Handle the Drinks</h3>
+        <p>From intimate tea parties to full event tea bars — Bleu September brings the ritual to your gathering. Handcrafted blends, beautiful presentation, and an experience your guests will remember.</p>
+        <ul class="events-list">
+          <li>Tea Parties & Women's Gatherings</li>
+          <li>Bridal & Baby Showers</li>
+          <li>Corporate Wellness Events</li>
+          <li>Church & Community Functions</li>
+          <li>Birthday Celebrations</li>
+          <li>Pop-Up Tea Bars & Activations</li>
+          <li>Custom Bottled Favors</li>
+        </ul>
+        <p style="font-family:var(--serif);font-style:italic;color:var(--gold-light);font-size:16px;">Sip. Celebrate. Stay Bleu.</p>
+      </div>
+      <div class="event-form reveal reveal-d2">
+        <h3 class="form-title">Inquire About Your Event</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="evtFirst" placeholder="Your first name">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="evtLast" placeholder="Your last name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="evtEmail" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="evtPhone" placeholder="(555) 123-4567">
+        </div>
+        <div class="form-group">
+          <label>Event Type</label>
+          <select id="evtType">
+            <option value="">Select one...</option>
+            <option value="Tea Party">Tea Party</option>
+            <option value="Bridal/Baby Shower">Bridal / Baby Shower</option>
+            <option value="Corporate Wellness">Corporate Wellness Event</option>
+            <option value="Church/Community">Church / Community Function</option>
+            <option value="Birthday">Birthday Celebration</option>
+            <option value="Pop-Up Tea Bar">Pop-Up Tea Bar</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Us More</label>
+          <textarea id="evtMessage" placeholder="Date, guest count, any details..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitEventForm()">Submit Inquiry</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COLLABORATE ═══ -->
+  <section class="section" id="collaborate" style="text-align:center;">
+    <p class="section-eyebrow reveal">Partnerships</p>
+    <h2 class="section-title reveal reveal-d1" style="margin-bottom:24px;">Let's <span class="accent">Collaborate</span></h2>
+    <div class="gold-line gold-line-center reveal reveal-d2"></div>
+    <p class="reveal reveal-d2" style="max-width:600px;margin:0 auto 32px;font-size:15px;line-height:1.9;color:var(--text-mid);">
+      We're looking to collaborate with like-minded brands, influencers, and tea enthusiasts who share our passion for wellness, creativity, and community. Whether you're interested in wholesale partnerships, product features, or exclusive collaborations — we'd love to brew something special together.
+    </p>
+    <p class="reveal reveal-d3" style="font-family:var(--serif);font-style:italic;font-size:18px;color:var(--gold-light);margin-bottom:40px;">Let's make tea time unforgettable.</p>
+    <a href="mailto:bleuseptembertea@gmail.com" class="btn btn-gold reveal reveal-d3">Get in Touch</a>
+  </section>
+
+  <!-- ═══ EMAIL CAPTURE ═══ -->
+  <section class="email-capture section-full" style="text-align:center;">
+    <p class="section-eyebrow reveal">Join the Circle</p>
+    <h2 class="section-title reveal reveal-d1" style="margin-bottom:12px;">Stay in the <span class="accent">stillness.</span></h2>
+    <p class="reveal reveal-d2">New blends, rituals, and moments worth savoring — delivered to your inbox.</p>
+    <div class="email-row reveal reveal-d2">
+      <input type="email" id="emailInput" placeholder="Your email address">
+      <button onclick="subscribeEmail()">Subscribe</button>
+    </div>
+    <p class="email-fine reveal reveal-d3">No spam, ever. Unsubscribe anytime.</p>
+  </section>
+
+  <!-- ═══ SOCIAL ═══ -->
+  <section class="section social-section" id="contact">
+    <p class="section-eyebrow reveal">Find Us</p>
+    <h2 class="section-title reveal reveal-d1">Follow the <span class="accent">ritual</span></h2>
+    <div class="social-handles reveal reveal-d2">
+      <a href="https://www.instagram.com/bleuseptembertea" target="_blank" class="social-link">
+        <span>📷</span> Instagram
+      </a>
+      <a href="https://www.facebook.com/Bleuseptembertea" target="_blank" class="social-link">
+        <span>👥</span> Facebook
+      </a>
+      <a href="mailto:bleuseptembertea@gmail.com" class="social-link">
+        <span>✉️</span> Email
+      </a>
+      <a href="tel:5206351266" class="social-link">
+        <span>📞</span> (520) 635-1266
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">BLEU SEPTEMBER TEA</div>
+        <p>Premium loose leaf herbal teas handcrafted for mindfulness, ritual, and the luxury of unhurried time.</p>
+        <p class="footer-location">📍 Coolidge, Arizona 85128</p>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#shop" onclick="filterShop('signature')">Signature Blends</a></li>
+          <li><a href="#shop" onclick="filterShop('wellness')">Wellness Collection</a></li>
+          <li><a href="#shop" onclick="filterShop('herbs')">Loose Leaf Herbs</a></li>
+          <li><a href="#shop" onclick="filterShop('togo')">To-Go Flavors</a></li>
+          <li><a href="#shop" onclick="filterShop('seamoss')">Sea Moss</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Experience</h5>
+        <ul>
+          <li><a href="#events">Private Events</a></li>
+          <li><a href="#collaborate">Collaborate</a></li>
+          <li><a href="#about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://www.instagram.com/bleuseptembertea" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/Bleuseptembertea" target="_blank">Facebook</a></li>
+          <li><a href="mailto:bleuseptembertea@gmail.com">Email Us</a></li>
+          <li><a href="tel:5206351266">(520) 635-1266</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Bleu September Tea. All rights reserved.</p>
+      <p style="font-family:var(--serif);font-style:italic;">Sip slowly. Be present. 'Cause baby, it's Tea Time.</p>
+    </div>
+    <div class="footer-disclaimer">
+      <p><strong>DISCLAIMER:</strong> These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Please consult your healthcare provider before use, especially if pregnant, nursing, or taking medication. Individual results may vary.</p>
+      <p style="margin-top:8px;"><strong>RETURN POLICY:</strong> Due to the nature of our products, we do not accept returns or exchanges on our tea. If you receive a damaged or incorrect item, please contact us within two days of delivery at bleuseptembertea@gmail.com with your order details and a photo of the issue.</p>
+    </div>
+  </footer>
+
+  <!-- ═══ SNIPCART ═══ -->
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
+  <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Shop filter
+    function filterShop(cat) {
+      const cards = document.querySelectorAll('.product-card');
+      const tabs = document.querySelectorAll('.shop-tab');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      document.querySelector(`.shop-tab[onclick="filterShop('${cat}')"]`)?.classList.add('active');
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.setAttribute('data-hidden', 'false');
+          card.style.display = '';
+        } else {
+          card.setAttribute('data-hidden', 'true');
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Event form submission → HubSpot
+    function submitEventForm() {
+      const btn = document.querySelector('.form-submit');
+      const first = document.getElementById('evtFirst').value;
+      const last = document.getElementById('evtLast').value;
+      const email = document.getElementById('evtEmail').value;
+      const phone = document.getElementById('evtPhone').value;
+      const type = document.getElementById('evtType').value;
+      const message = document.getElementById('evtMessage').value;
+
+      if (!first || !email || !type) {
+        btn.textContent = 'Please fill required fields';
+        btn.style.background = '#C94060';
+        setTimeout(() => { btn.textContent = 'Submit Inquiry'; btn.style.background = ''; }, 2500);
+        return;
+      }
+
+      // TODO: Replace with HubSpot form API endpoint
+      // fetch('https://api.hsforms.com/submissions/v3/integration/submit/PORTAL_ID/FORM_ID', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     fields: [
+      //       { name: 'firstname', value: first },
+      //       { name: 'lastname', value: last },
+      //       { name: 'email', value: email },
+      //       { name: 'phone', value: phone },
+      //       { name: 'event_type', value: type },
+      //       { name: 'message', value: message }
+      //     ]
+      //   })
+      // });
+
+      btn.textContent = 'Inquiry Sent ✓';
+      btn.style.background = 'var(--sage)';
+      document.getElementById('evtFirst').value = '';
+      document.getElementById('evtLast').value = '';
+      document.getElementById('evtEmail').value = '';
+      document.getElementById('evtPhone').value = '';
+      document.getElementById('evtType').value = '';
+      document.getElementById('evtMessage').value = '';
+      setTimeout(() => { btn.textContent = 'Submit Inquiry'; btn.style.background = ''; }, 3000);
+    }
+
+    // Email subscribe
+    function subscribeEmail() {
+      const input = document.getElementById('emailInput');
+      const btn = input.nextElementSibling;
+      if (input.value && input.value.includes('@')) {
+        // TODO: Connect to HubSpot or email service
+        btn.textContent = 'Welcome ✓';
+        btn.style.background = 'var(--sage)';
+        input.value = '';
+        setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>
