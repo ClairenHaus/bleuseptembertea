@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Events — Bleu September Tea</title>
+  <meta name="description" content="Book a private tea experience. Tea parties, bridal showers, corporate wellness events, and custom tea bars by Bleu September Tea in Arizona.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep: #0A0F1C;
+      --navy: #131B2E;
+      --navy-mid: #1C2B4A;
+      --bleu: #2E4270;
+      --cream: #F5F0E8;
+      --gold: #C4A265;
+      --gold-light: #D4B678;
+      --gold-dim: rgba(196,162,101,0.3);
+      --hibiscus: #C94060;
+      --hibiscus-deep: #8B1A3A;
+      --sage: #7A8C6E;
+      --berry: #6B2D5B;
+      --charcoal: #1A1A1A;
+      --text-soft: rgba(245,240,232,0.55);
+      --text-mid: rgba(245,240,232,0.75);
+      --border-subtle: rgba(196,162,101,0.15);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Jost', sans-serif;
+      --display: 'Playfair Display', serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--deep); color: var(--cream);
+      font-family: var(--sans); font-weight: 300;
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 48px; background: rgba(10,15,28,0.95);
+      backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-brand {
+      font-family: var(--serif); font-size: 15px; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-mid); transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span { width: 24px; height: 1.5px; background: var(--gold); }
+
+    /* HERO */
+    .page-hero {
+      padding: 180px 48px 100px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(139,26,58,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 70%, rgba(196,162,101,0.1) 0%, transparent 50%);
+    }
+    .page-hero-grain {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+    .eyebrow {
+      font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px; position: relative;
+    }
+    .page-title {
+      font-family: var(--display); font-size: clamp(42px, 6vw, 72px);
+      font-weight: 400; line-height: 1.1; position: relative;
+    }
+    .accent { font-family: var(--serif); font-style: italic; color: var(--gold-light); }
+    .gold-line { width: 48px; height: 1px; background: var(--gold); margin: 24px auto; }
+    .page-subtitle {
+      font-family: var(--serif); font-size: 18px; font-style: italic;
+      color: var(--text-mid); max-width: 520px; margin: 0 auto;
+      line-height: 1.8; position: relative;
+    }
+
+    /* SECTIONS */
+    .section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+    .section-dark { background: var(--navy); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+    .section-accent { background: linear-gradient(135deg, var(--hibiscus-deep), var(--navy-mid)); }
+
+    /* PACKAGES */
+    .packages-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 56px;
+    }
+    .package-card {
+      background: var(--navy); border: 1px solid var(--border-subtle);
+      padding: 40px 32px; position: relative; overflow: hidden;
+      transition: border-color 0.4s, transform 0.3s;
+    }
+    .package-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
+    .package-card.featured { border-color: var(--gold); }
+    .package-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute; top: 16px; right: -28px;
+      background: var(--gold); color: var(--deep);
+      font-size: 8px; font-weight: 600; letter-spacing: 0.2em;
+      padding: 4px 32px; transform: rotate(45deg);
+    }
+    .package-icon { font-size: 36px; margin-bottom: 20px; }
+    .package-name {
+      font-family: var(--display); font-size: 24px; margin-bottom: 8px;
+    }
+    .package-desc {
+      font-size: 13px; line-height: 1.7; color: var(--text-soft); margin-bottom: 24px;
+    }
+    .package-includes {
+      list-style: none; margin-bottom: 28px;
+    }
+    .package-includes li {
+      font-size: 13px; color: var(--text-mid); padding: 8px 0;
+      border-bottom: 1px solid rgba(245,240,232,0.04);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .package-includes li::before { content: '✦'; color: var(--gold); font-size: 8px; }
+    .package-price {
+      font-family: var(--serif); font-size: 14px; color: var(--gold-light);
+      font-style: italic;
+    }
+
+    /* HOW IT WORKS */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; margin-top: 56px;
+    }
+    .step-card { text-align: center; }
+    .step-num {
+      font-family: var(--serif); font-size: 48px; font-weight: 300;
+      color: var(--gold-dim); margin-bottom: 16px;
+    }
+    .step-name {
+      font-family: var(--serif); font-size: 20px; margin-bottom: 10px;
+    }
+    .step-text { font-size: 13px; line-height: 1.7; color: var(--text-soft); }
+
+    /* FAQ */
+    .faq-list { max-width: 700px; margin: 48px auto 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border-subtle); padding: 24px 0;
+    }
+    .faq-q {
+      font-family: var(--serif); font-size: 18px; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-q::after {
+      content: '+'; font-family: var(--sans); font-size: 20px;
+      color: var(--gold); transition: transform 0.3s;
+    }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 14px; line-height: 1.8; color: var(--text-soft);
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s;
+      padding-top: 0;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-top: 16px; }
+
+    /* GALLERY PLACEHOLDER */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 4px; margin-top: 48px;
+    }
+    .gallery-tile {
+      aspect-ratio: 1; background: var(--navy-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-soft); border: 1px solid var(--border-subtle);
+    }
+
+    /* FORM */
+    .form-section {
+      max-width: 640px; margin: 0 auto;
+      background: var(--navy); border: 1px solid var(--border-subtle);
+      padding: 48px;
+    }
+    .form-title {
+      font-family: var(--display); font-size: 28px; text-align: center;
+      margin-bottom: 32px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text-soft); margin-bottom: 8px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 14px 16px;
+      background: rgba(245,240,232,0.05); border: 1px solid rgba(245,240,232,0.12);
+      color: var(--cream); font-family: var(--sans); font-size: 13px;
+      outline: none; transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--navy); color: var(--cream); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 16px; margin-top: 8px;
+      background: var(--gold); color: var(--deep);
+      font-family: var(--sans); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      border: none; cursor: pointer; transition: background 0.3s;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      text-align: center; padding: 80px 48px;
+      background: linear-gradient(135deg, var(--hibiscus-deep), var(--navy-mid));
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(196,162,101,0.08), transparent);
+    }
+    .cta-banner h2 {
+      font-family: var(--display); font-size: clamp(28px, 4vw, 44px);
+      margin-bottom: 12px; position: relative;
+    }
+    .cta-banner p {
+      font-family: var(--serif); font-size: 16px; font-style: italic;
+      color: var(--text-mid); margin-bottom: 32px; position: relative;
+    }
+    .btn {
+      padding: 16px 40px; font-family: var(--sans); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      transition: all 0.4s; cursor: pointer; border: none; display: inline-block;
+    }
+    .btn-gold { background: var(--gold); color: var(--deep); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      border: 1px solid rgba(245,240,232,0.25);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: var(--charcoal); padding: 48px; text-align: center;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .footer-brand {
+      font-family: var(--serif); font-size: 18px; color: var(--gold);
+      letter-spacing: 0.15em; margin-bottom: 16px;
+    }
+    footer p { font-size: 11px; color: rgba(245,240,232,0.25); margin-bottom: 8px; }
+    footer a { color: rgba(245,240,232,0.4); transition: color 0.3s; }
+    footer a:hover { color: var(--gold); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(10,15,28,0.98); backdrop-filter: blur(16px);
+        padding: 24px; border-bottom: 1px solid var(--border-subtle);
+      }
+      .page-hero { padding: 140px 24px 80px; }
+      .section { padding: 80px 24px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-section { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .cta-banner { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">Bleu September Tea</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#shop">Shop</a></li>
+      <li><a href="events.html" style="color:var(--gold);">Private Events</a></li>
+      <li><a href="collaborate.html">Collaborate</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grain"></div>
+    <p class="eyebrow">Book an Experience</p>
+    <h1 class="page-title">Private <span class="accent">Events</span></h1>
+    <div class="gold-line"></div>
+    <p class="page-subtitle">From intimate tea parties to full event tea bars — we bring the ritual to your gathering. Handcrafted blends, beautiful presentation, and an experience your guests will talk about long after the last sip.</p>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="section">
+    <div style="text-align:center;">
+      <p class="eyebrow reveal">What We Offer</p>
+      <h2 class="page-title reveal reveal-d1" style="font-size:clamp(32px,4vw,48px);">Event <span class="accent">Packages</span></h2>
+    </div>
+    <div class="packages-grid">
+      <div class="package-card reveal">
+        <div class="package-icon">🫖</div>
+        <h3 class="package-name">Intimate <span class="accent">Tea Party</span></h3>
+        <p class="package-desc">Perfect for small gatherings of 2–10 guests. A curated selection of blends served with care.</p>
+        <ul class="package-includes">
+          <li>3 signature blend selections</li>
+          <li>Ceramic or disposable service</li>
+          <li>Setup & teardown included</li>
+          <li>Guided tasting experience</li>
+          <li>Personalized blend cards</li>
+        </ul>
+        <p class="package-price">Starting at $150 · up to 10 guests</p>
+      </div>
+      <div class="package-card featured reveal reveal-d1">
+        <div class="package-icon">✨</div>
+        <h3 class="package-name">Tea <span class="accent">Bar</span></h3>
+        <p class="package-desc">A full-service tea bar for your event. Self-serve or attended — your guests choose their own experience.</p>
+        <ul class="package-includes">
+          <li>5+ blend selections</li>
+          <li>Full tea bar setup & signage</li>
+          <li>Attended service available</li>
+          <li>Hot & iced options</li>
+          <li>Custom branded elements</li>
+          <li>Up to 50 guests</li>
+        </ul>
+        <p class="package-price">Starting at $350 · up to 50 guests</p>
+      </div>
+      <div class="package-card reveal reveal-d2">
+        <div class="package-icon">🎁</div>
+        <h3 class="package-name">Bottled <span class="accent">Favors</span></h3>
+        <p class="package-desc">Send your guests home with something special. Custom-labeled bottled teas or loose leaf favor bags.</p>
+        <ul class="package-includes">
+          <li>Custom labels with your event details</li>
+          <li>Choice of bottled or bagged</li>
+          <li>Minimum order 12 units</li>
+          <li>Flavor selection assistance</li>
+          <li>Gift-ready packaging</li>
+        </ul>
+        <p class="package-price">Starting at $5/unit · 12 minimum</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:32px;font-size:13px;color:var(--text-soft);">All packages customizable. Pricing varies based on guest count, location, and customizations.</p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section-dark" style="padding:100px 48px;">
+    <div style="text-align:center;max-width:1200px;margin:0 auto;">
+      <p class="eyebrow reveal">Simple & Seamless</p>
+      <h2 class="page-title reveal reveal-d1" style="font-size:clamp(32px,4vw,48px);">How It <span class="accent">Works</span></h2>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <p class="step-num">01</p>
+          <h3 class="step-name">Tell Us About It</h3>
+          <p class="step-text">Fill out the inquiry form with your event type, date, guest count, and any special requests.</p>
+        </div>
+        <div class="step-card reveal reveal-d1">
+          <p class="step-num">02</p>
+          <h3 class="step-name">We'll Customize</h3>
+          <p class="step-text">We'll craft a tailored proposal with blend recommendations, service style, and pricing.</p>
+        </div>
+        <div class="step-card reveal reveal-d2">
+          <p class="step-num">03</p>
+          <h3 class="step-name">Confirm & Relax</h3>
+          <p class="step-text">Lock in your date with a deposit. We handle the rest — sourcing, blending, setup, everything.</p>
+        </div>
+        <div class="step-card reveal reveal-d3">
+          <p class="step-num">04</p>
+          <h3 class="step-name">Sip & Celebrate</h3>
+          <p class="step-text">We arrive, set up, and your guests experience something they'll remember. 'Cause baby, it's Tea Time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFECT FOR -->
+  <section class="section" style="text-align:center;">
+    <p class="eyebrow reveal">Perfect For</p>
+    <h2 class="page-title reveal reveal-d1" style="font-size:clamp(32px,4vw,48px);margin-bottom:48px;">Every <span class="accent">Occasion</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto;">
+      <div class="reveal" style="padding:32px;border:1px solid var(--border-subtle);">
+        <p style="font-size:28px;margin-bottom:12px;">💐</p>
+        <p style="font-family:var(--serif);font-size:18px;margin-bottom:8px;">Bridal & Baby Showers</p>
+        <p style="font-size:12px;color:var(--text-soft);line-height:1.6;">Elegant tea service that sets the tone for the whole celebration.</p>
+      </div>
+      <div class="reveal reveal-d1" style="padding:32px;border:1px solid var(--border-subtle);">
+        <p style="font-size:28px;margin-bottom:12px;">🏢</p>
+        <p style="font-family:var(--serif);font-size:18px;margin-bottom:8px;">Corporate Wellness</p>
+        <p style="font-size:12px;color:var(--text-soft);line-height:1.6;">Bring calm and connection to your team retreat or office event.</p>
+      </div>
+      <div class="reveal reveal-d2" style="padding:32px;border:1px solid var(--border-subtle);">
+        <p style="font-size:28px;margin-bottom:12px;">⛪</p>
+        <p style="font-family:var(--serif);font-size:18px;margin-bottom:8px;">Church & Community</p>
+        <p style="font-size:12px;color:var(--text-soft);line-height:1.6;">Women's gatherings, fellowship events, and community celebrations.</p>
+      </div>
+      <div class="reveal" style="padding:32px;border:1px solid var(--border-subtle);">
+        <p style="font-size:28px;margin-bottom:12px;">🎂</p>
+        <p style="font-family:var(--serif);font-size:18px;margin-bottom:8px;">Birthdays</p>
+        <p style="font-size:12px;color:var(--text-soft);line-height:1.6;">Make it memorable with a tea bar your guests won't forget.</p>
+      </div>
+      <div class="reveal reveal-d1" style="padding:32px;border:1px solid var(--border-subtle);">
+        <p style="font-size:28px;margin-bottom:12px;">🎪</p>
+        <p style="font-family:var(--serif);font-size:18px;margin-bottom:8px;">Pop-Up Activations</p>
+        <p style="font-size:12px;color:var(--text-soft);line-height:1.6;">Brand collaborations, market activations, and experiential moments.</p>
+      </div>
+      <div class="reveal reveal-d2" style="padding:32px;border:1px solid var(--border-subtle);">
+        <p style="font-size:28px;margin-bottom:12px;">🧘</p>
+        <p style="font-family:var(--serif);font-size:18px;margin-bottom:8px;">Wellness Retreats</p>
+        <p style="font-size:12px;color:var(--text-soft);line-height:1.6;">Pair our apothecary blends with your yoga, meditation, or self-care day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY PLACEHOLDER -->
+  <section class="section-dark" style="padding:80px 48px;">
+    <div style="text-align:center;max-width:1200px;margin:0 auto;">
+      <p class="eyebrow reveal">Moments</p>
+      <h2 class="page-title reveal reveal-d1" style="font-size:clamp(28px,3vw,40px);margin-bottom:8px;">Event <span class="accent">Gallery</span></h2>
+      <p class="reveal reveal-d2" style="font-size:13px;color:var(--text-soft);margin-bottom:8px;">Coming soon — photos from our events and activations.</p>
+      <div class="gallery-grid reveal reveal-d3">
+        <div class="gallery-tile">Coming Soon</div>
+        <div class="gallery-tile">Coming Soon</div>
+        <div class="gallery-tile">Coming Soon</div>
+        <div class="gallery-tile">Coming Soon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div style="text-align:center;">
+      <p class="eyebrow reveal">Questions</p>
+      <h2 class="page-title reveal reveal-d1" style="font-size:clamp(28px,3vw,40px);">Frequently <span class="accent">Asked</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How far in advance should I book?<span></span></div>
+        <div class="faq-a">We recommend booking at least 2–3 weeks in advance for smaller gatherings and 4–6 weeks for larger events. Last-minute requests are welcome but subject to availability.</div>
+      </div>
+      <div class="faq-item reveal reveal-d1">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What areas do you serve?<span></span></div>
+        <div class="faq-a">We're based in Coolidge, Arizona and serve the greater Phoenix metro area including Chandler, Gilbert, Mesa, Tempe, Scottsdale, and surrounding communities. Travel fees may apply for events outside a 50-mile radius.</div>
+      </div>
+      <div class="faq-item reveal reveal-d1">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is there a minimum guest count?<span></span></div>
+        <div class="faq-a">Our Intimate Tea Party package starts at just 2 guests. There's no minimum — we love small, intentional gatherings just as much as large celebrations.</div>
+      </div>
+      <div class="faq-item reveal reveal-d2">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do you provide cups and servingware?<span></span></div>
+        <div class="faq-a">Yes! We offer both ceramic and disposable options depending on the package and your preference. Premium ceramic service is included in the Tea Bar package.</div>
+      </div>
+      <div class="faq-item reveal reveal-d2">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I customize the blends served?<span></span></div>
+        <div class="faq-a">Absolutely. We'll work with you to select blends that match your theme, season, and guest preferences. Custom labels and branding are also available for an additional fee.</div>
+      </div>
+      <div class="faq-item reveal reveal-d3">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the deposit and cancellation policy?<span></span></div>
+        <div class="faq-a">A 50% non-refundable deposit secures your date. The remaining balance is due 48 hours before the event. Cancellations made 7+ days in advance receive a credit toward a future booking.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INQUIRY FORM -->
+  <section class="section-dark" style="padding:100px 48px;" id="inquire">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p class="eyebrow reveal">Ready?</p>
+      <h2 class="page-title reveal reveal-d1" style="font-size:clamp(28px,3vw,40px);">Book Your <span class="accent">Experience</span></h2>
+    </div>
+    <div class="form-section reveal reveal-d2">
+      <h3 class="form-title">Event Inquiry</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name *</label>
+          <input type="text" id="evtFirst" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="evtLast" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" id="evtEmail" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" id="evtPhone" placeholder="(555) 123-4567">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Event Type *</label>
+          <select id="evtType">
+            <option value="">Select one...</option>
+            <option value="Tea Party">Intimate Tea Party</option>
+            <option value="Tea Bar">Full Tea Bar</option>
+            <option value="Bottled Favors">Bottled Favors Only</option>
+            <option value="Bridal/Baby Shower">Bridal / Baby Shower</option>
+            <option value="Corporate Wellness">Corporate Wellness</option>
+            <option value="Church/Community">Church / Community</option>
+            <option value="Birthday">Birthday Celebration</option>
+            <option value="Pop-Up">Pop-Up / Activation</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Estimated Guest Count</label>
+          <select id="evtGuests">
+            <option value="">Select...</option>
+            <option value="2-10">2–10 guests</option>
+            <option value="11-25">11–25 guests</option>
+            <option value="26-50">26–50 guests</option>
+            <option value="50+">50+ guests</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Preferred Date</label>
+        <input type="date" id="evtDate">
+      </div>
+      <div class="form-group">
+        <label>Tell Us More</label>
+        <textarea id="evtMessage" placeholder="Location, theme, special requests, anything you want us to know..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Submit Inquiry</button>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2>Not sure which package? <span class="accent">Let's talk.</span></h2>
+    <p>'Cause baby, it's Tea Time — and we want to make yours unforgettable.</p>
+    <a href="tel:5206351266" class="btn btn-gold" style="position:relative;">Call (520) 635-1266</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">BLEU SEPTEMBER TEA</div>
+    <p style="font-family:var(--serif);font-style:italic;color:rgba(245,240,232,0.4);margin-bottom:16px;">Sip slowly. Be present. 'Cause baby, it's Tea Time.</p>
+    <p>📍 Coolidge, Arizona 85128 · <a href="tel:5206351266">(520) 635-1266</a> · <a href="mailto:bleuseptembertea@gmail.com">bleuseptembertea@gmail.com</a></p>
+    <p style="margin-top:16px;">&copy; 2025 Bleu September Tea. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile nav
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    // Form submit
+    function submitForm() {
+      const btn = document.querySelector('.form-submit');
+      const first = document.getElementById('evtFirst').value;
+      const email = document.getElementById('evtEmail').value;
+      const type = document.getElementById('evtType').value;
+      if (!first || !email || !type) {
+        btn.textContent = 'Please fill required fields';
+        btn.style.background = '#C94060';
+        setTimeout(() => { btn.textContent = 'Submit Inquiry'; btn.style.background = ''; }, 2500);
+        return;
+      }
+      // TODO: Connect to HubSpot form API
+      btn.textContent = 'Inquiry Sent ✓';
+      btn.style.background = '#7A8C6E';
+      setTimeout(() => { btn.textContent = 'Submit Inquiry'; btn.style.background = ''; }, 3000);
+    }
+  </script>
+</body>
+</html>
