@@ -109,6 +109,14 @@
     }
     .package-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
     .package-card.featured { border-color: var(--gold); }
+    .package-bg {
+      position: absolute; inset: 0; opacity: 0.12;
+      transition: opacity 0.5s, transform 0.6s;
+    }
+    .package-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .package-card:hover .package-bg { opacity: 0.2; transform: scale(1.05); }
     .package-card.featured::before {
       content: 'MOST POPULAR';
       position: absolute; top: 16px; right: -28px;
@@ -116,15 +124,15 @@
       font-size: 8px; font-weight: 600; letter-spacing: 0.2em;
       padding: 4px 32px; transform: rotate(45deg);
     }
-    .package-icon { font-size: 36px; margin-bottom: 20px; }
+    .package-icon { font-size: 36px; margin-bottom: 20px; position: relative; z-index: 1; }
     .package-name {
-      font-family: var(--display); font-size: 24px; margin-bottom: 8px;
+      font-family: var(--display); font-size: 24px; margin-bottom: 8px; position: relative; z-index: 1;
     }
     .package-desc {
-      font-size: 13px; line-height: 1.7; color: var(--text-soft); margin-bottom: 24px;
+      font-size: 13px; line-height: 1.7; color: var(--text-soft); margin-bottom: 24px; position: relative; z-index: 1;
     }
     .package-includes {
-      list-style: none; margin-bottom: 28px;
+      list-style: none; margin-bottom: 28px; position: relative; z-index: 1;
     }
     .package-includes li {
       font-size: 13px; color: var(--text-mid); padding: 8px 0;
@@ -134,7 +142,7 @@
     .package-includes li::before { content: '✦'; color: var(--gold); font-size: 8px; }
     .package-price {
       font-family: var(--serif); font-size: 14px; color: var(--gold-light);
-      font-style: italic;
+      font-style: italic; position: relative; z-index: 1;
     }
 
     /* HOW IT WORKS */
@@ -329,6 +337,7 @@
     </div>
     <div class="packages-grid">
       <div class="package-card reveal">
+        <div class="package-bg"><img src="pkg-teaparty.png" alt="" loading="lazy"></div>
         <div class="package-icon">🫖</div>
         <h3 class="package-name">Intimate <span class="accent">Tea Party</span></h3>
         <p class="package-desc">Perfect for small gatherings of 2–10 guests. A curated selection of blends served with care.</p>
@@ -342,6 +351,7 @@
         <p class="package-price">Starting at $150 · up to 10 guests</p>
       </div>
       <div class="package-card featured reveal reveal-d1">
+        <div class="package-bg"><img src="pkg-teabar.png" alt="" loading="lazy"></div>
         <div class="package-icon">✨</div>
         <h3 class="package-name">Tea <span class="accent">Bar</span></h3>
         <p class="package-desc">A full-service tea bar for your event. Self-serve or attended — your guests choose their own experience.</p>
@@ -356,6 +366,7 @@
         <p class="package-price">Starting at $350 · up to 50 guests</p>
       </div>
       <div class="package-card reveal reveal-d2">
+        <div class="package-bg"><img src="pkg-favors.png" alt="" loading="lazy"></div>
         <div class="package-icon">🎁</div>
         <h3 class="package-name">Bottled <span class="accent">Favors</span></h3>
         <p class="package-desc">Send your guests home with something special. Custom-labeled bottled teas or loose leaf favor bags.</p>
