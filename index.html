@@ -1676,6 +1676,17 @@
 
   <!-- ═══ SCRIPTS ═══ -->
   <script>
+    // Hero video seamless loop
+    const heroVideo = document.querySelector('.hero-video video');
+    if (heroVideo) {
+      heroVideo.addEventListener('timeupdate', function() {
+        if (this.duration - this.currentTime < 0.3) {
+          this.currentTime = 0;
+          this.play();
+        }
+      });
+    }
+
     // Nav scroll
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
